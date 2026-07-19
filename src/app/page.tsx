@@ -24,7 +24,7 @@ export default function HomePage() {
       </header>
 
       <main className="flex-1">
-        <section className="py-20 sm:py-32">
+        <section className="py-20 sm:py-32 bg-gray-50">
           <div className="max-w-4xl mx-auto px-4 text-center">
             <h1 className="text-4xl sm:text-6xl font-bold tracking-tight text-gray-900">
               Your AI representative,{' '}
@@ -84,7 +84,7 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section className="py-20">
+        <section className="py-20 bg-gray-50">
           <div className="max-w-4xl mx-auto px-4 text-center">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
               Instead of reading, let them ask.
