@@ -1,6 +1,3 @@
-import { PDFParse } from 'pdf-parse';
-import * as mammoth from 'mammoth';
-
 export async function parseDocument(
   buffer: Buffer,
   filename: string
@@ -21,12 +18,14 @@ export async function parseDocument(
 }
 
 async function parsePdf(buffer: Buffer): Promise<string> {
+  const { PDFParse } = await import('pdf-parse');
   const parser = new PDFParse({ data: new Uint8Array(buffer) });
   const result = await parser.getText();
   return result.text;
 }
 
 async function parseDocx(buffer: Buffer): Promise<string> {
+  const mammoth = await import('mammoth');
   const result = await mammoth.extractRawText({ buffer });
   return result.value;
 }
