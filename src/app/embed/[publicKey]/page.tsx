@@ -83,23 +83,12 @@ export default function EmbedPage({
           const { done, value } = await reader.read();
           if (done) break;
 
-          const chunk = decoder.decode(value);
-          const lines = chunk.split('\n');
-
-          for (const line of lines) {
-            if (line.startsWith('0:')) {
-              try {
-                const text = JSON.parse(line.slice(2));
-                assistantContent += text;
-                setMessages([
-                  ...newMessages,
-                  { role: 'assistant', content: assistantContent },
-                ]);
-              } catch {
-                // Skip unparseable lines
-              }
-            }
-          }
+          const chunk = decoder.decode(value, { stream: true });
+          assistantContent += chunk;
+          setMessages([
+            ...newMessages,
+            { role: 'assistant', content: assistantContent },
+          ]);
         }
       }
     } catch {
